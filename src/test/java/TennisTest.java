@@ -23,4 +23,11 @@ public class TennisTest {
         assertEquals(30, player.getScore());
     }
 
+    @Test void increaseScoreThriceShouldSetScoreTo40() {
+        player.increaseScore();
+        player.increaseScore();
+        player.increaseScore();
+        assertEquals(40, player.getScore());
+    }
+
 }
