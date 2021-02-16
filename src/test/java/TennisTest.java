@@ -2,8 +2,7 @@ import com.titusnachbauer.tennis.Game;
 import com.titusnachbauer.tennis.Player;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TennisTest {
     Player player = new Player();
@@ -51,6 +50,15 @@ public class TennisTest {
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
         assertTrue(game.isWonByPlayer());
+    }
+
+    @Test
+    void whenPlayerScoresThreePointsInARowThenGameIsNotWon() {
+        Game game = new Game("PlayerA", "PlayerB");
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.A);
+        assertFalse(game.isWonByPlayer());
     }
 
 }
