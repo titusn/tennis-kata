@@ -44,13 +44,13 @@ public class TennisTest {
     }
 
     @Test
-    void whenPlayerHasScore40AndScoresPointThenPlayerWinsGame() {
-        Game game = new Game();
-        game.increaseScorePlayerA();
-        game.increaseScorePlayerA();
-        game.increaseScorePlayerA();
-        game.increaseScorePlayerA();
-        assertTrue(game.isWonByPlayerA());
+    void whenPlayerScoresFourPointsInARowThenPlayerWinsGame() {
+        Game game = new Game("PlayerA", "PlayerB");
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.A);
+        assertTrue(game.isWonByPlayer());
     }
 
 }

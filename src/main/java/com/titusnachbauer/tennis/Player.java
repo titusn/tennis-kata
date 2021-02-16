@@ -5,6 +5,7 @@ public class Player {
     private final int[] possibleScores = {0, 15, 30, 40};
     boolean scoredLastPoint = false;
     private int scoredGamePoints = 0;
+    private String name;
 
     public int getScore() {
         return possibleScores[scoredGamePoints];
@@ -20,5 +21,9 @@ public class Player {
 
     public boolean scoredLastPoint() {
         return scoredLastPoint;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
