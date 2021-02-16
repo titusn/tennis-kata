@@ -1,10 +1,9 @@
 import com.titusnachbauer.tennis.Game;
-import com.titusnachbauer.tennis.NotEnoughPlayers;
 import com.titusnachbauer.tennis.Player;
-import com.titusnachbauer.tennis.TooManyPlayers;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TennisTest {
     Player player = new Player();
@@ -46,21 +45,12 @@ public class TennisTest {
 
     @Test
     void whenPlayerHasScore40AndScoresPointThenPlayerWinsGame() {
-        Player[] players = new Player[]{new Player(), new Player()};
-        Game game = new Game(players);
+        Game game = new Game();
         game.increaseScorePlayerA();
         game.increaseScorePlayerA();
         game.increaseScorePlayerA();
         game.increaseScorePlayerA();
-        assertTrue(game.isWonBy(game.getPlayerA()));
-    }
-
-    @Test
-    void creatingGameWithOnePlayerShouldThrowNotEnoughPlayers() {
-        Player[] players = new Player[]{new Player()};
-        assertThrows(NotEnoughPlayers.class, () -> {
-            Game game = new Game(players);
-        });
+        assertTrue(game.isWonByPlayerA());
     }
 
 }
