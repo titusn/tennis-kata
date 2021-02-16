@@ -2,6 +2,17 @@ package com.titusnachbauer.tennis;
 
 public class Game {
 
+    public String getWinner() {
+        if (isWonByPlayer()) {
+            for (Player player: players) {
+                if (player.scoredLastPoint()) {
+                    return player.getName();
+                }
+            }
+        }
+        throw new WinnerUnknown("Game still undecided.");
+    }
+
     public enum PLAYER {
         A,
         B

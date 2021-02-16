@@ -50,6 +50,7 @@ public class TennisTest {
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
         assertTrue(game.isWonByPlayer());
+        assertEquals("PlayerA",game.getWinner());
     }
 
     @Test
