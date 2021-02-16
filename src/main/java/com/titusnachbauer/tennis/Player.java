@@ -2,19 +2,14 @@ package com.titusnachbauer.tennis;
 
 public class Player {
 
-    private int score;
+    private final int[] possibleScores = {0, 15, 30, 40};
+    private int scoredGamePoints = 0;
 
     public int getScore() {
-        return score;
+        return possibleScores[scoredGamePoints];
     }
 
     public void increaseScore() {
-        if (score == 0) {
-            score = 15;
-        } else if (score == 15) {
-            score = 30;
-        } else {
-            score = 40;
-        }
+        scoredGamePoints++;
     }
 }
