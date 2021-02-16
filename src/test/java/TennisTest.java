@@ -1,5 +1,6 @@
 import com.titusnachbauer.tennis.Game;
 import com.titusnachbauer.tennis.Player;
+import com.titusnachbauer.tennis.WinnerUnknown;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -60,6 +61,12 @@ public class TennisTest {
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
         assertFalse(game.isWonByPlayer());
+    }
+
+    @Test
+    void whenGameIsUndecidedShouldThrowWinnerUnknown() {
+        Game game = new Game("PlayerA", "PlayerB");
+        assertThrows(WinnerUnknown.class, game::getWinner);
     }
 
 }

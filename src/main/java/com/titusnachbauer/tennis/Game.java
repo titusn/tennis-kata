@@ -22,11 +22,10 @@ public class Game {
     }
 
     public boolean isWonByPlayer() {
-        return players[PLAYER.A.ordinal()].scoredLastPoint() || players[PLAYER.B.ordinal()].scoredLastPoint();
+        return (!findWinner().equals(""));
     }
 
     public String getWinner() {
-
         if (isWonByPlayer()) {
             return findWinner();
         } else {
@@ -39,7 +38,7 @@ public class Game {
         if (winner.isPresent()) {
             return winner.get().getName();
         } else {
-            throw new WinnerUnknown("Winner not found.");
+            return "";
         }
     }
 }
