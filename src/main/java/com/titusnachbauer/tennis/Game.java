@@ -1,17 +1,9 @@
 package com.titusnachbauer.tennis;
 
-public class Game {
+import java.util.Arrays;
+import java.util.Optional;
 
-    public String getWinner() {
-        if (isWonByPlayer()) {
-            for (Player player: players) {
-                if (player.scoredLastPoint()) {
-                    return player.getName();
-                }
-            }
-        }
-        throw new WinnerUnknown("Game still undecided.");
-    }
+public class Game {
 
     public enum PLAYER {
         A,
@@ -33,4 +25,21 @@ public class Game {
         return players[PLAYER.A.ordinal()].scoredLastPoint() || players[PLAYER.B.ordinal()].scoredLastPoint();
     }
 
+    public String getWinner() {
+
+        if (isWonByPlayer()) {
+            return findWinner();
+        } else {
+            throw new WinnerUnknown("Game still undecided.");
+        }
+    }
+
+    private String findWinner() {
+        Optional<Player> winner = Arrays.stream(players).filter(Player::scoredLastPoint).findFirst();
+        if (winner.isPresent()) {
+            return winner.get().getName();
+        } else {
+            throw new WinnerUnknown("Winner not found.");
+        }
+    }
 }

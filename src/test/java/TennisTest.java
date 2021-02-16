@@ -43,7 +43,7 @@ public class TennisTest {
     }
 
     @Test
-    void whenPlayerScoresFourPointsInARowThenPlayerWinsGame() {
+    void whenPlayerAScoresFourPointsInARowThenPlayerWinsGame() {
         Game game = new Game("PlayerA", "PlayerB");
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
