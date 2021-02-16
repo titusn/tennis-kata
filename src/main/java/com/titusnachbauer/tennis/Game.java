@@ -11,6 +11,10 @@ public class Game {
         this.players = players;
     }
 
+    public void increaseScorePlayerA() {
+        players[0].increaseScore();
+    }
+
     public boolean isWonBy(Player player) {
         return findPlayer(player).scoredLastPoint();
     }
@@ -22,5 +26,9 @@ public class Game {
             }
         }
         throw new PlayerNotFound();
+    }
+
+    public Player getPlayerA() {
+        return players[0];
     }
 }
