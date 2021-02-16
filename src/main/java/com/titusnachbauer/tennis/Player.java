@@ -1,7 +1,14 @@
 package com.titusnachbauer.tennis;
 
 public class Player {
+
+    private int score;
+
     public int getScore() {
-        return 0;
+        return score;
+    }
+
+    public void increaseScore() {
+        score = 15;
     }
 }
