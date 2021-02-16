@@ -3,6 +3,7 @@ package com.titusnachbauer.tennis;
 public class Player {
 
     private final int[] possibleScores = {0, 15, 30, 40};
+    boolean scoredLastPoint = false;
     private int scoredGamePoints = 0;
 
     public int getScore() {
@@ -10,10 +11,14 @@ public class Player {
     }
 
     public void increaseScore() {
-        scoredGamePoints++;
+        if (scoredGamePoints < possibleScores.length - 1) {
+            scoredGamePoints++;
+        } else {
+            scoredLastPoint = true;
+        }
     }
 
     public boolean scoredLastPoint() {
-        return (scoredGamePoints > 3);
+        return scoredLastPoint;
     }
 }

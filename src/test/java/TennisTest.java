@@ -30,6 +30,14 @@ public class TennisTest {
         assertEquals(40, player.getScore());
     }
 
+    @Test void scoreShouldNeverBeHigherThan40() {
+        player.increaseScore();
+        player.increaseScore();
+        player.increaseScore();
+        player.increaseScore();
+        assertEquals(40, player.getScore());
+    }
+
     @Test void whenPlayerHasScore40AndScoresPointThenPlayerWinsGame() {
         Game game = new Game(player);
         player.increaseScore();
