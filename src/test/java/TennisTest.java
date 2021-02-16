@@ -1,8 +1,8 @@
+import com.titusnachbauer.tennis.Game;
 import com.titusnachbauer.tennis.Player;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TennisTest {
     Player player = new Player();
@@ -28,6 +28,15 @@ public class TennisTest {
         player.increaseScore();
         player.increaseScore();
         assertEquals(40, player.getScore());
+    }
+
+    @Test void whenPlayerHasScore40AndScoresPointThenPlayerWinsGame() {
+        Game game = new Game(player);
+        player.increaseScore();
+        player.increaseScore();
+        player.increaseScore();
+        player.increaseScore();
+        assertTrue(Game.isWonBy(player));
     }
 
 }

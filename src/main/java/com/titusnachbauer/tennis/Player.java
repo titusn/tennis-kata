@@ -12,4 +12,8 @@ public class Player {
     public void increaseScore() {
         scoredGamePoints++;
     }
+
+    public boolean scoredLastPoint() {
+        return (scoredGamePoints > 3);
+    }
 }
