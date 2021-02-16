@@ -17,4 +17,10 @@ public class TennisTest {
         assertEquals(15, player.getScore());
     }
 
+    @Test void increaseScoreTwiceShouldSetScoreTo30() {
+        player.increaseScore();
+        player.increaseScore();
+        assertEquals(30, player.getScore());
+    }
+
 }

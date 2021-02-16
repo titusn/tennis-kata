@@ -9,6 +9,10 @@ public class Player {
     }
 
     public void increaseScore() {
-        score = 15;
+        if (score == 0) {
+            score = 15;
+        } else {
+            score = 30;
+        }
     }
 }
