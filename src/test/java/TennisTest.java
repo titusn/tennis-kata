@@ -66,6 +66,7 @@ public class TennisTest {
     @Test
     void whenGameIsUndecidedShouldThrowWinnerUnknown() {
         Game game = new Game("PlayerA", "PlayerB");
+        assertFalse(game.isWonByPlayer());
         assertThrows(WinnerUnknown.class, game::getWinner);
     }
 
