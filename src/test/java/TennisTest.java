@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TennisTest {
-    Player player = new Player();
+    private Player player = new Player();
+    private Game game = new Game("PlayerA", "PlayerB");
 
     @Test
     public void newPlayerShouldHaveScoreZero() {
@@ -45,7 +46,6 @@ public class TennisTest {
 
     @Test
     void whenPlayerAScoresFourPointsInARowThenPlayerWinsGame() {
-        Game game = new Game("PlayerA", "PlayerB");
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
@@ -56,7 +56,6 @@ public class TennisTest {
 
     @Test
     void whenPlayerScoresThreePointsInARowThenGameIsNotWon() {
-        Game game = new Game("PlayerA", "PlayerB");
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
@@ -65,14 +64,12 @@ public class TennisTest {
 
     @Test
     void whenGameIsUndecidedShouldThrowWinnerUnknown() {
-        Game game = new Game("PlayerA", "PlayerB");
         assertFalse(game.isWonByPlayer());
         assertThrows(WinnerUnknown.class, game::getWinner);
     }
 
     @Test
     void whenPlayerScoresFourPointsInARowButOnlyOneMoreThanOpponentThenGameIsNotWon() {
-        Game game = new Game("PlayerA", "PlayerB");
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.B);
         game.increaseScore(Game.PLAYER.A);
