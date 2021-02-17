@@ -13,8 +13,16 @@ public class Game {
     private final Player[] players = new Player[]{new Player(), new Player()};
 
     public Game(String playerA, String playerB) {
-        players[PLAYER.A.ordinal()].setName(playerA);
-        players[PLAYER.B.ordinal()].setName(playerB);
+        getPlayerA().setName(playerA);
+        getPlayerB().setName(playerB);
+    }
+
+    private Player getPlayerB() {
+        return players[PLAYER.B.ordinal()];
+    }
+
+    private Player getPlayerA() {
+        return players[PLAYER.A.ordinal()];
     }
 
     public void increaseScore(PLAYER player) {
@@ -27,9 +35,9 @@ public class Game {
 
     public boolean isWonByPlayer() {
         boolean result = false;
-        if (players[PLAYER.A.ordinal()].scoredLastPoint() && players[PLAYER.B.ordinal()].getScore() <= 30) {
+        if (getPlayerA().scoredLastPoint() && getPlayerB().getScore() <= 30) {
             result = true;
-        } else if (players[PLAYER.B.ordinal()].scoredLastPoint() && players[PLAYER.A.ordinal()].getScore() <= 30) {
+        } else if (getPlayerB().scoredLastPoint() && getPlayerA().getScore() <= 30) {
             result = true;
         }
         return result;
@@ -54,7 +62,7 @@ public class Game {
 
     public boolean isDeuce() {
         boolean result = false;
-        if (players[PLAYER.A.ordinal()].getScore() == 40 && players[PLAYER.B.ordinal()].getScore() == 40) {
+        if (getPlayerA().getScore() == 40 && getPlayerB().getScore() == 40) {
             result = true;
         }
         return result;
