@@ -47,25 +47,19 @@ public class Game {
         }
     }
 
-    private Player getPlayer(PLAYER player) {
-        return players[player.ordinal()];
+    private Player getPlayer(PLAYER playerID) {
+        return players[playerID.ordinal()];
     }
 
-    public boolean isWonByPlayer() {
-        boolean result = false;
-        if (getPlayerA().scoredLastPoint() && getPlayerB().getScore() <= 30) {
-            result = true;
-        } else if (getPlayerB().scoredLastPoint() && getPlayerA().getScore() <= 30) {
-            result = true;
-        }
-        return result;
+    public boolean isWonByPlayer(PLAYER playerID) {
+        return  (getPlayer(playerID).scoredLastPoint() && getOpponent(playerID).getScore() <= 30);
     }
 
     public String getWinner() {
-        if (isWonByPlayer()) {
+        try {
             return findWinner();
-        } else {
-            throw new WinnerUnknown("Game still undecided.");
+        } catch (WinnerUnknown winnerUnknown) {
+            throw winnerUnknown;
         }
     }
 
@@ -74,16 +68,12 @@ public class Game {
         if (winner.isPresent()) {
             return winner.get().getName();
         } else {
-            return "";
+            throw new WinnerUnknown("Game still undecided.");
         }
     }
 
     public boolean isDeuce() {
-        boolean result = false;
-        if (getPlayerA().getScore() == 40 && getPlayerB().getScore() == 40 && !hasAdvantage(PLAYER.A) && !hasAdvantage(PLAYER.B)) {
-            result = true;
-        }
-        return result;
+        return  (getPlayerA().getScore() == 40 && getPlayerB().getScore() == 40 && !hasAdvantage(PLAYER.A) && !hasAdvantage(PLAYER.B));
     }
 
 }

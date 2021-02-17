@@ -50,7 +50,7 @@ public class TennisTest {
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
-        assertTrue(game.isWonByPlayer());
+        assertTrue(game.isWonByPlayer(Game.PLAYER.A));
         assertEquals("PlayerA",game.getWinner());
     }
 
@@ -60,7 +60,7 @@ public class TennisTest {
         game.increaseScore(Game.PLAYER.B);
         game.increaseScore(Game.PLAYER.B);
         game.increaseScore(Game.PLAYER.B);
-        assertTrue(game.isWonByPlayer());
+        assertTrue(game.isWonByPlayer(Game.PLAYER.B));
         assertEquals("PlayerB",game.getWinner());
     }
 
@@ -69,12 +69,12 @@ public class TennisTest {
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
-        assertFalse(game.isWonByPlayer());
+        assertFalse(game.isWonByPlayer(Game.PLAYER.A));
     }
 
     @Test
     void whenGameIsUndecidedShouldThrowWinnerUnknown() {
-        assertFalse(game.isWonByPlayer());
+        assertFalse(game.isWonByPlayer(Game.PLAYER.A));
         assertThrows(WinnerUnknown.class, game::getWinner);
     }
 
@@ -87,7 +87,7 @@ public class TennisTest {
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.B);
         game.increaseScore(Game.PLAYER.A);
-        assertFalse(game.isWonByPlayer());
+        assertFalse(game.isWonByPlayer(Game.PLAYER.A));
     }
 
     @Test
