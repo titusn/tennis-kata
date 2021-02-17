@@ -1,51 +1,14 @@
 import com.titusnachbauer.tennis.Game;
-import com.titusnachbauer.tennis.Player;
 import com.titusnachbauer.tennis.WinnerUnknown;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TennisTest {
-    private Player player = new Player();
     private Game game = new Game("PlayerA", "PlayerB");
 
     @Test
-    public void newPlayerShouldHaveScoreZero() {
-        assertEquals(0, player.getScore());
-    }
-
-    @Test
-    void increaseScoreOnceShouldSetScoreTo15() {
-        player.increaseScore();
-        assertEquals(15, player.getScore());
-    }
-
-    @Test
-    void increaseScoreTwiceShouldSetScoreTo30() {
-        player.increaseScore();
-        player.increaseScore();
-        assertEquals(30, player.getScore());
-    }
-
-    @Test
-    void increaseScoreThriceShouldSetScoreTo40() {
-        player.increaseScore();
-        player.increaseScore();
-        player.increaseScore();
-        assertEquals(40, player.getScore());
-    }
-
-    @Test
-    void scoreShouldNeverBeHigherThan40() {
-        player.increaseScore();
-        player.increaseScore();
-        player.increaseScore();
-        player.increaseScore();
-        assertEquals(40, player.getScore());
-    }
-
-    @Test
-    void whenPlayerAScoresFourPointsInARowThenPlayerWinsGame() {
+    void givenPlayerAScoresFourPointsInARowThenPlayerWinsGame() {
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
@@ -55,7 +18,7 @@ public class TennisTest {
     }
 
     @Test
-    void whenPlayerBScoresFourPointsInARowThenPlayerWinsGame() {
+    void givenPlayerBScoresFourPointsInARowThenPlayerWinsGame() {
         game.increaseScore(Game.PLAYER.B);
         game.increaseScore(Game.PLAYER.B);
         game.increaseScore(Game.PLAYER.B);
@@ -65,7 +28,7 @@ public class TennisTest {
     }
 
     @Test
-    void whenPlayerScoresThreePointsInARowThenGameIsNotWon() {
+    void givenPlayerScoresThreePointsInARowThenGameIsNotWon() {
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
@@ -73,13 +36,13 @@ public class TennisTest {
     }
 
     @Test
-    void whenGameIsUndecidedShouldThrowWinnerUnknown() {
+    void givenGameIsUndecidedShouldThrowWinnerUnknown() {
         assertFalse(game.isWonByPlayer(Game.PLAYER.A));
         assertThrows(WinnerUnknown.class, game::getWinner);
     }
 
     @Test
-    void whenPlayerScoresFourPointsInARowButOnlyOneMoreThanOpponentThenGameIsNotWon() {
+    void givenPlayerScoresFourPointsInARowWhenScoredOnlyOneMoreThanOpponentThenGameIsNotWon() {
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.B);
         game.increaseScore(Game.PLAYER.A);
@@ -91,7 +54,7 @@ public class TennisTest {
     }
 
     @Test
-    void onlyWhenBothPlayersHave40GameIsADeuce() {
+    void givenBothPlayersHave40GameIsADeuce() {
         assertFalse(game.isDeuce());
         game.increaseScore(Game.PLAYER.A);
         assertFalse(game.isDeuce());
@@ -108,7 +71,7 @@ public class TennisTest {
     }
 
     @Test
-    void whenGameIsDeuceAndPlayerScoresPlayerHasAdvantage() {
+    void givenGameIsDeuceWhenPlayerAScoresPlayerAHasAdvantage() {
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.B);
         game.increaseScore(Game.PLAYER.A);
