@@ -81,15 +81,20 @@ public class TennisTest {
     }
 
     @Test
-    void whenBothPlayersHave40GameIsADeuce() {
+    void onlyWhenBothPlayersHave40GameIsADeuce() {
+        assertFalse(game.isDeuce());
         game.increaseScore(Game.PLAYER.A);
+        assertFalse(game.isDeuce());
         game.increaseScore(Game.PLAYER.B);
+        assertFalse(game.isDeuce());
         game.increaseScore(Game.PLAYER.A);
+        assertFalse(game.isDeuce());
         game.increaseScore(Game.PLAYER.B);
+        assertFalse(game.isDeuce());
         game.increaseScore(Game.PLAYER.A);
+        assertFalse(game.isDeuce());
         game.increaseScore(Game.PLAYER.B);
-        assertEquals("Deuce", game.getStatus());
+        assertTrue(game.isDeuce());
     }
-
 
 }

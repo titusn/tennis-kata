@@ -51,4 +51,13 @@ public class Game {
             return "";
         }
     }
+
+    public boolean isDeuce() {
+        boolean result = false;
+        if (players[PLAYER.A.ordinal()].getScore() == 40 && players[PLAYER.B.ordinal()].getScore() == 40) {
+            result = true;
+        }
+        return result;
+    }
+
 }
