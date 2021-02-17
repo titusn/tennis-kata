@@ -5,6 +5,10 @@ import java.util.Optional;
 
 public class Game {
 
+    public boolean hasAdvantage(PLAYER playerID) {
+        return (getPlayer(playerID).getScore() == 40 && getPlayer(playerID).scoredLastPoint());
+    }
+
     public enum PLAYER {
         A,
         B
@@ -18,15 +22,19 @@ public class Game {
     }
 
     private Player getPlayerB() {
-        return players[PLAYER.B.ordinal()];
+        return getPlayer(PLAYER.B);
     }
 
     private Player getPlayerA() {
-        return players[PLAYER.A.ordinal()];
+        return getPlayer(PLAYER.A);
     }
 
-    public void increaseScore(PLAYER player) {
-        players[player.ordinal()].increaseScore();
+    public void increaseScore(PLAYER playerID) {
+        getPlayer(playerID).increaseScore();
+    }
+
+    private Player getPlayer(PLAYER player) {
+        return players[player.ordinal()];
     }
 
     public boolean isWonByPlayer() {

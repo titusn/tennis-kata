@@ -97,4 +97,18 @@ public class TennisTest {
         assertTrue(game.isDeuce());
     }
 
+    @Test
+    void whenGameIsDeuceAndPlayerScoresPlayerHasAdvantage() {
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        assertTrue(game.isDeuce());
+
+        game.increaseScore(Game.PLAYER.A);
+        assertTrue(game.hasAdvantage(Game.PLAYER.A));
+
+    }
 }
