@@ -80,6 +80,16 @@ public class TennisTest {
         assertFalse(game.isWonByPlayer());
     }
 
+    @Test
+    void whenBothPlayersHave40GameIsADeuce() {
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        assertEquals("Deuce", game.getStatus());
+    }
 
 
 }
