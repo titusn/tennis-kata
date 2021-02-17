@@ -159,6 +159,5 @@ public class TennisTest {
         game.increaseScore(Game.PLAYER.B);
         assertFalse(game.hasAdvantage(Game.PLAYER.A));
         assertFalse(game.hasAdvantage(Game.PLAYER.B));
-
     }
 }

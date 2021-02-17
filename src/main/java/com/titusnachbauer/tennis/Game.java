@@ -59,7 +59,7 @@ public class Game {
         try {
             return findWinner();
         } catch (WinnerUnknown winnerUnknown) {
-            throw winnerUnknown;
+            throw new WinnerUnknown("Do not try to get name of winner if game is not decided.");
         }
     }
 
@@ -73,7 +73,15 @@ public class Game {
     }
 
     public boolean isDeuce() {
-        return  (getPlayerA().getScore() == 40 && getPlayerB().getScore() == 40 && !hasAdvantage(PLAYER.A) && !hasAdvantage(PLAYER.B));
+        return  (bothPlayersScored40() && noPlayerHasAdvantage());
+    }
+
+    private boolean noPlayerHasAdvantage() {
+        return !getPlayerA().hasAdvantage() && !getPlayerB().hasAdvantage();
+    }
+
+    private boolean bothPlayersScored40() {
+        return getPlayerA().getScore() == 40 && getPlayerB().getScore() == 40;
     }
 
 }
