@@ -55,6 +55,16 @@ public class TennisTest {
     }
 
     @Test
+    void whenPlayerBScoresFourPointsInARowThenPlayerWinsGame() {
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.B);
+        assertTrue(game.isWonByPlayer());
+        assertEquals("PlayerB",game.getWinner());
+    }
+
+    @Test
     void whenPlayerScoresThreePointsInARowThenGameIsNotWon() {
         game.increaseScore(Game.PLAYER.A);
         game.increaseScore(Game.PLAYER.A);
