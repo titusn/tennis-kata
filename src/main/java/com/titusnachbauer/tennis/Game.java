@@ -29,10 +29,6 @@ public class Game {
         players[player.ordinal()].increaseScore();
     }
 
-    public String getStatus() {
-        return "Deuce";
-    }
-
     public boolean isWonByPlayer() {
         boolean result = false;
         if (getPlayerA().scoredLastPoint() && getPlayerB().getScore() <= 30) {
