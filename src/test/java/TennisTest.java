@@ -69,4 +69,19 @@ public class TennisTest {
         assertThrows(WinnerUnknown.class, game::getWinner);
     }
 
+    @Test
+    void whenPlayerScoresFourPointsInARowButOnlyOneMoreThanOpponentThenGameIsNotWon() {
+        Game game = new Game("PlayerA", "PlayerB");
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.A);
+        assertFalse(game.isWonByPlayer());
+    }
+
+
+
 }

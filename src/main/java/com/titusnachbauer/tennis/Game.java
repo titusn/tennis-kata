@@ -22,7 +22,13 @@ public class Game {
     }
 
     public boolean isWonByPlayer() {
-        return (!findWinner().equals(""));
+        boolean result = false;
+        if (players[PLAYER.A.ordinal()].scoredLastPoint() && players[PLAYER.B.ordinal()].getScore() <= 30) {
+            result = true;
+        } else if (players[PLAYER.B.ordinal()].scoredLastPoint() && players[PLAYER.A.ordinal()].getScore() <= 30) {
+            result = true;
+        }
+        return result;
     }
 
     public String getWinner() {
