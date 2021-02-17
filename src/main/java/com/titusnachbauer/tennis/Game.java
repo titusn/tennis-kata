@@ -6,7 +6,7 @@ import java.util.Optional;
 public class Game {
 
     public boolean hasAdvantage(PLAYER playerID) {
-        return (getPlayer(playerID).getScore() == 40 && getPlayer(playerID).scoredLastPoint());
+        return getPlayer(playerID).hasAdvantage();
     }
 
     public enum PLAYER {
@@ -30,7 +30,21 @@ public class Game {
     }
 
     public void increaseScore(PLAYER playerID) {
-        getPlayer(playerID).increaseScore();
+        if (isDeuce()) {
+            getPlayer(playerID).setAdvantage();
+        } else if (getOpponent(playerID).hasAdvantage()) {
+            getOpponent(playerID).resetAdvantage();
+        } else {
+            getPlayer(playerID).increaseScore();
+        }
+    }
+
+    private Player getOpponent(PLAYER playerID) {
+        if (playerID == PLAYER.A) {
+            return getPlayerB();
+        } else {
+            return getPlayerA();
+        }
     }
 
     private Player getPlayer(PLAYER player) {
@@ -66,7 +80,7 @@ public class Game {
 
     public boolean isDeuce() {
         boolean result = false;
-        if (getPlayerA().getScore() == 40 && getPlayerB().getScore() == 40) {
+        if (getPlayerA().getScore() == 40 && getPlayerB().getScore() == 40 && !hasAdvantage(PLAYER.A) && !hasAdvantage(PLAYER.B)) {
             result = true;
         }
         return result;

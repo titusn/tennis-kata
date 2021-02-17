@@ -120,4 +120,45 @@ public class TennisTest {
         game.increaseScore(Game.PLAYER.A);
         assertTrue(game.hasAdvantage(Game.PLAYER.A));
     }
+
+    @Test
+    void givenGameIsDeuceThenNoPlayerHasAdvantage() {
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        assertTrue(game.isDeuce());
+        assertFalse(game.hasAdvantage(Game.PLAYER.A));
+        assertFalse(game.hasAdvantage(Game.PLAYER.B));
+    }
+
+    @Test
+    void givenPlayerAHasAdvantageWhenPlayerBScoresThenGameIsDeuce() {
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        assertTrue(game.isDeuce());
+    }
+
+    @Test
+    void givenPlayerAHadAdvantageWhenPlayerBScoredThenNoPlayerHasAdvantage() {
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        game.increaseScore(Game.PLAYER.A);
+        game.increaseScore(Game.PLAYER.B);
+        assertFalse(game.hasAdvantage(Game.PLAYER.A));
+        assertFalse(game.hasAdvantage(Game.PLAYER.B));
+
+    }
 }

@@ -6,6 +6,7 @@ public class Player {
     boolean scoredLastPoint = false;
     private int scoredGamePoints = 0;
     private String name;
+    private boolean hasAdvantage;
 
     public int getScore() {
         return possibleScores[scoredGamePoints];
@@ -29,5 +30,17 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public boolean hasAdvantage() {
+        return hasAdvantage;
+    }
+
+    public void setAdvantage() {
+        hasAdvantage = true;
+    }
+
+    public void resetAdvantage() {
+        hasAdvantage = false;
     }
 }
